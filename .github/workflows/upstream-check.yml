@@ -1,0 +1,49 @@
+# Revisa una vez por semana si ARTFLIX-Cobalto (el tema original) tiene cambios nuevos.
+# Si los tiene, abre un aviso (issue) para incorporarlos en una nueva versión de este tema.
+name: Novedades de ARTFLIX-Cobalto
+
+on:
+  schedule:
+    - cron: "0 12 * * 1"   # lunes 12:00 UTC (09:00 en Argentina)
+  workflow_dispatch:        # también se puede correr a mano desde la pestaña Actions
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  revisar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Comparar con la versión en la que se basa este tema
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          UPSTREAM: https://github.com/galisteogames/ARTFLIX-Cobalto
+        run: |
+          base=$(tr -d '[:space:]' < .github/upstream-artflix-cobalto.txt)
+          actual=$(git ls-remote "$UPSTREAM" HEAD | cut -f1)
+          echo "Base de este tema: $base"
+          echo "ARTFLIX-Cobalto hoy: $actual"
+          if [ -z "$actual" ] || [ "$actual" = "$base" ]; then
+            echo "Sin novedades."
+            exit 0
+          fi
+          titulo="ARTFLIX-Cobalto tiene cambios nuevos (${actual:0:7})"
+          if gh issue list --state open --search "$titulo in:title" --json number --jq 'length' | grep -qv '^0$'; then
+            echo "Ya hay un aviso abierto para esta versión."
+            exit 0
+          fi
+          gh issue create --title "$titulo" --body "$(cat <<EOF
+          Los autores de **ARTFLIX-Cobalto** publicaron cambios.
+
+          - Base de este tema: \`${base:0:7}\`
+          - Versión nueva: \`${actual:0:7}\`
+          - Ver diferencias: $UPSTREAM/compare/${base}...${actual}
+
+          **Para incorporarlos:** traer los cambios de arte o de sistemas nuevos, probar en Batocera, actualizar
+          \`.github/upstream-artflix-cobalto.txt\` con \`${actual}\`, subir la versión en \`CHANGELOG.md\` y en el
+          encabezado de \`theme.xml\`, y crear la etiqueta de la versión nueva.
+          EOF
+          )"
