@@ -8,7 +8,7 @@
 
 *Modificación por **Richard Campos (RS Groove)***
 
-[![Versión](https://img.shields.io/badge/versión-1.0.0-7b1fa2?style=for-the-badge)](CHANGELOG.md)
+[![Versión](https://img.shields.io/badge/versión-1.1.0-7b1fa2?style=for-the-badge)](CHANGELOG.md)
 [![Batocera](https://img.shields.io/badge/Batocera-43-1c0640?style=for-the-badge)](https://batocera.org)
 [![Resolución](https://img.shields.io/badge/1080p-16%3A9-5e026d?style=for-the-badge)](#-compatibilidad)
 [![Licencia](https://img.shields.io/badge/licencia-CC%20BY--NC--SA%204.0-e0343d?style=for-the-badge)](LICENSE.md)

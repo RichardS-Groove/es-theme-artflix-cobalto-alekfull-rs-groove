@@ -8,6 +8,28 @@ Todas las mejoras del tema, de la más nueva a la más vieja. Las versiones sigu
 
 ---
 
+## [1.1.0] — 2026-11-08
+
+### Nuevo · New
+
+- **Android TV** (sistema `android`, para el proyecto
+  [Android TV RS Groove](https://github.com/RichardS-Groove/batocera-android-tv-rs-groove)):
+  - Logo **«android tv»** con el robot verde (`assets/logos/android.png`): el «android» original con «tv» dibujado
+    con el mismo trazo, la misma altura y el mismo borde blanco. El robot de Android es de Google (CC BY 3.0).
+  - Textos sutiles (`android/custom.xml`): título «Android TV» y autor «Richard Campos»; año y desarrollador ocultos.
+- **Firma «by RS Groove»** chiquita, en el violeta de «COBALTO» y con letra de marcador, a la derecha del logo
+  ARTFLIX COBALTO, en las dos capas que lo traen dibujado: `assets/overr.png` (listas de juegos) y
+  `assets/cobaltoverlay.png` (menú de sistemas). El logo y los créditos de Fagner (AlekFull) y Galisteo siguen igual.
+
+### Notas · Notes
+
+- El fondo de Android (`assets/arts/android.jpg`) sigue siendo el de ARTFLIX-Cobalto. Si querés uno propio, cambiá
+  esa imagen (y las de `720/` y `540/`) por una de 1920×1080.
+- Varios archivos de `assets/` pueden estar enlazados (hardlink) con ARTFLIX-Cobalto si los dos temas están
+  instalados: para cambiarlos, reemplazá el archivo (copiar a uno nuevo y renombrar), no lo escribas encima.
+
+---
+
 ## [1.0.0] — 2026-11-07
 
 Primera versión. Basada en **ARTFLIX-Cobalto** `9cad3de` (Fagner / AlekFull · Galisteo).
